@@ -1,0 +1,124 @@
+:root{
+    --pri_coll : #344966;
+    --sec_coll : #0D1821;
+    --ter_coll : #5C9EAD;
+    --quar_coll : #A5A5A5;
+    --qui_coll: #E2E2E2;
+    --black : #000;
+}
+
+.container__form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 568px;
+    height: 568px;
+    background: var(--qui_coll);
+    border-radius: 30px;
+    margin: 150px auto;
+}
+.container__form p{
+    font-size: 2rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #4f4c4c;
+    position: relative;
+    margin: 30px 0;
+}
+.container__form form{
+    display: flex;
+    flex-direction: column;
+    height: 475px;
+    width: 356px;
+}
+
+#sign_in_failed{
+    color: red;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+}
+.input__area{
+    position: relative;
+}
+
+.input__field {
+    height: 65px;
+    width: 100%;
+    border: none;
+    position: relative;
+    margin: 30px 0;
+    padding-left: 10px;
+    font-size: 18px;
+}
+.input__field::placeholder{
+    color: var(--quar_coll);
+    font-size: 18px;
+    font-weight: 500;
+    content: '';
+    position: relative;
+}
+
+.line__input{
+    position: absolute;
+    width: 95%;
+    border: solid 2px var(--pri_coll);
+    left: 10px;
+    top: 80px;
+}
+
+
+.line__input::after{
+    content: '';
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 101%;
+    left: -1.5px;
+    top: -2px;
+    background: var(--ter_coll);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 400ms ease-in-out;
+}
+
+
+.input__field:focus{
+    outline: none;
+}
+
+.input__area .input__field:focus ~ .line__input::after{
+    transform: scaleX(1);
+}
+
+#create__account__link{
+    color: var(--ter_coll);
+    position: relative;
+    transition: color 400ms ease-out;
+}
+#create__account__link:hover{
+    color: var(--pri_coll);
+}
+
+#create__account__link::after{
+    content: "";
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    position: absolute;
+    background: var(--pri_coll);
+    transform: scaleX(0);
+    transition: transform 300ms ease-out;
+}
+
+#create__account__link:hover::after{
+    transform: scaleX(1);
+}
+
+
+
