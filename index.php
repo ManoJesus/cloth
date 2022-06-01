@@ -1,9 +1,15 @@
 <?php
+    include('classes/Connection.php');
     if(isset($_COOKIE['isLogged']) && !empty($_COOKIE['isLogged'])){
         $isLogged = $_COOKIE['isLogged'];
     }else{
         $isLogged = false;
     }
+
+    //TODO change it to a product service
+    $conn = ConnectionManager::getConnection("project_php_a3");
+    $sql = "select * from product limit 15";
+    $result_set = $conn->query($sql);
 ?>
 
 <!doctype html>
@@ -22,9 +28,9 @@
             <a href="index.php">CLOTH</a>
         </div>
         <div class="nav__bar">
-            <a class="nav__link" href="#">Women</a>
-            <a class="nav__link" href="#">Men</a>
-            <a class="nav__link" href="#">Kids</a>
+            <a class="nav__link" href="women.php">Women</a>
+            <a class="nav__link" href="men.php">Men</a>
+            <a class="nav__link" href="kids.php">Kids</a>
         </div>
         <?php if(!$isLogged){?>
             <div class="container__sign-in">
@@ -46,7 +52,22 @@
     </header>
 
     <main>
-        <p id="whats-new">What's new ?</p>
+        <div class="page__title">
+            <p id="whats-new">What's new ?</p>
+        </div>
+        <div class="card_container">
+            <?php while($row = mysqli_fetch_array($result_set)){ ?>
+                <div class="card">
+                    <div class="card__img">
+                        <img class="product__img" src='<?php echo $row["image_path"];?>' alt="product_img">
+                    </div>
+                    <div class="card__content">
+                        <p class="product__name"><?php echo $row["name"];?></p>
+                        <p class="product__price"><?php echo '$'.$row["price"];?></p>
+                    </div>
+                </div>
+            <?php }?>
+        </div>
     </main>
 
     <footer>

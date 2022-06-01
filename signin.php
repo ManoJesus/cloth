@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include("classes/Connection.php");
+include("classes/UserService.php");
 
 //starting session
 session_start();
@@ -15,8 +15,8 @@ $_SESSION['error'] = $_SESSION['error'] ?? ""; // $_SESSION['error'] = isset($_S
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $password = md5($_POST['password']);
-
-    if(!verify_if_user_exists($email,$password)){
+    $user_service = new UserService();
+    if(!$user_service->verify_user($email,$password)){
         if(--$_SESSION['attempts'] > 0){
             $_SESSION['error'] = "Email or password invalid. You have ". $_SESSION['attempts'] ." attempts left";
             $_SESSION['failedToSignIn'] = false;
@@ -36,18 +36,6 @@ if(isset($_POST['submit'])){
     header('Location: index.php');
 }
 
-function verify_if_user_exists($user_email, $user_password): bool{
-    $conn = ConnectionManager::getConnection("project_php_a3");
-    $userExists = false;
-
-    $sql = "select email, password from users where email = '$user_email' and password = '$user_password';";
-    $result = $conn->query($sql);
-    if(mysqli_num_rows($result)>0){
-        $userExists = true;
-    }
-    mysqli_close($conn);
-    return $userExists;
-}
 ?>
 
 <!doctype html>

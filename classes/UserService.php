@@ -10,9 +10,13 @@
             return $userDAO->createUser($user);
         }
 
-        public function verify_if_user_exists($user_email): bool{
+        public function verify_user($user_email,$password): bool{
+            $result = false;
             $userDAO = new UserDAO();
             $user = $userDAO->getUserByEmail($user_email);
-            return !($user!==null);
+            if($user != null){
+                $result = $user->getPassword() === md5($password);
+            }
+            return $result;
         }
     }
