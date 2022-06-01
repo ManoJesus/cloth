@@ -59,10 +59,10 @@
             <?php while($row = mysqli_fetch_array($result_set)){ ?>
                 <div class="card">
                     <div class="card__img">
-                        <img class="product__img" src='<?php echo $row["image_path"];?>' alt="product_img">
+                        <a href="cart.php"><img class="product__img" src='<?php echo $row["image_path"];?>' alt="product_img"></a>
                     </div>
                     <div class="card__content">
-                        <p class="product__name"><?php echo $row["name"];?></p>
+                        <a href="cart.php"><p class="product__name"><?php echo $row["name"];?></p></a>
                         <p class="product__price"><?php echo '$'.$row["price"];?></p>
                     </div>
                 </div>

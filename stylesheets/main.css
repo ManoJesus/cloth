@@ -257,6 +257,8 @@ main #whats-new::after{
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600;
+    width: 100%;
+    color: var(--black);
     word-wrap: break-word;
 }
 
