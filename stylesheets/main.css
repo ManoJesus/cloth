@@ -206,7 +206,7 @@ footer{
 
 
 
-main #whats-new{
+main #title-page{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -218,7 +218,7 @@ main #whats-new{
     position: relative;
     margin: 30px 0;
 }
-main #whats-new::after{
+main #title-page::after{
     content: '';
     display: block;
     position: absolute;
@@ -246,14 +246,14 @@ main #whats-new::after{
     outline: solid 1px var(--ter_coll);
 }
 
-.card__img{
+.card.card__img{
     width: 100%;
 }
-.product__img{
+.card.product__img{
     width: 100%;
 }
 
-.product__name{
+.card.product__name{
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600;
@@ -262,7 +262,7 @@ main #whats-new::after{
     word-wrap: break-word;
 }
 
-.product__price{
+.card.product__price{
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--sec_coll);
@@ -271,7 +271,7 @@ main #whats-new::after{
 
 }
 
-.product__price::before{
+.card.product__price::before{
     content: '';
     background: var(--quar_coll);
     height: 1px;
@@ -281,3 +281,4 @@ main #whats-new::after{
     left: 20%;
     display: block;
 }
+

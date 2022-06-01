@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require_once ('components.php');
 include("classes/UserService.php");
 
 $userService = new UserService();
@@ -36,9 +37,7 @@ if(isset($_POST["submit"])){
 </head>
 <body>
 <header>
-    <div class="container__logo">
-        <a href="index.php">CLOTH</a>
-    </div>
+    <?php header_no_nav();?>
 </header>
 <main>
     <div class="container__form">
@@ -73,23 +72,7 @@ if(isset($_POST["submit"])){
 </main>
 
 <footer>
-    <ul class="footer__list">
-        <li class="footer__item"><a href="">Terms and Conditions</a></li>
-        <li class="footer__item"><a href="">Support Us</a></li>
-        <li class="footer__item"><a href="">SAC</a></li>
-        <li class="footer__item">
-            <p>Quality and Security</p>
-            <ul class="labels__list">
-                <li class="label__item"><img src="site_images/footer_label_top3_ibest.png" alt="" class="label__img">
-                </li>
-                <li class="label__item"><img src="site_images/label-blindado.png" alt="" class="label__img"
-                                             id="site_blindado"></li>
-                <li class="label__item"><img src="site_images/label-reclameaqui.png" alt="" class="label__img"></li>
-                <li class="label__item"><img src="site_images/label_ebit.png" alt="" class="label__img"></li>
-            </ul>
-        </li>
-    </ul>
-    <p>Developed By ManoJesus.Inc</p>
+   <?php footer();?>
 </footer>
 
 
