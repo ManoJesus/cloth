@@ -246,14 +246,14 @@ main #title-page::after{
     outline: solid 1px var(--ter_coll);
 }
 
-.card.card__img{
+.card .card__img{
     width: 100%;
 }
-.card.product__img{
+.card__img .product__img{
     width: 100%;
 }
 
-.card.product__name{
+.card .product__name{
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600;
@@ -262,7 +262,7 @@ main #title-page::after{
     word-wrap: break-word;
 }
 
-.card.product__price{
+.product__price{
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--sec_coll);
@@ -271,7 +271,7 @@ main #title-page::after{
 
 }
 
-.card.product__price::before{
+.card .product__price::before{
     content: '';
     background: var(--quar_coll);
     height: 1px;
@@ -282,3 +282,95 @@ main #title-page::after{
     display: block;
 }
 
+.container__buy{
+    column-gap: 230px;
+    margin: 80px 50px;
+}
+.image__container .product__image{
+    width: 563px;
+    height: 675px;
+}
+
+.buy-information{
+    width: 593px;
+    position: relative;
+}
+.buy-information::after{
+    content: '';
+    display: block;
+    position: absolute;
+    height: 563px;
+    width: 1px;
+    background: var(--quar_coll);
+    left: -115px;
+    bottom: 49px;
+
+}
+.product-information{
+    row-gap: 30px;
+}
+.product-information .product__name{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+.product-information .product__price{
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+}
+.product-information .product__price span{
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.quantity{
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.buy__form{
+    row-gap: 10px;
+}
+
+.buy__form input[type='number']{
+    width: 60px;
+}
+
+.submit__buy-now{
+    width: 80%;
+    letter-spacing: 1.06rem;
+}
+
+.product_description{
+    margin-top: 50px;
+    position:relative;
+}
+.product_description::after{
+    content:'';
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    top: -50px;
+    background: var(--quar_coll);
+
+}
+.product_description p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.description__name{
+    font-weight: 600;
+}
+.description__name span{
+    font-weight: 400;
+}
+
+.flex{
+    display: flex;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}

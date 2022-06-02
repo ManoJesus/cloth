@@ -69,8 +69,8 @@ function main_content_card($page_title, $result_set)
                             <a href="buy_page.php?name='.$row["name"].'"><img class="product__img" src="' . $row["image_path"] . '" alt="product_img"></a>
                         </div>
                         <div class="card__content">
-                            <a href="buy_page.php"><p class="product__name">' . $row["name"] . '</p></a>
-                            <p class="product__price">' . $row["price"] . '</p>
+                            <a href="buy_page.php?name='.$row["name"].'"><p class="product__name">' . $row["name"] . '</p></a>
+                            <p class="product__price">$' . $row["price"] . '</p>
                         </div>
                    </div>
             ';

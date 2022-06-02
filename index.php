@@ -1,6 +1,9 @@
 <?php
     require_once('components.php');
     include('classes/Connection.php');
+
+    new ConnectionManager();
+
     if(isset($_COOKIE['isLogged']) && !empty($_COOKIE['isLogged'])){
         $isLogged = $_COOKIE['isLogged'];
     }else{
