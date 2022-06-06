@@ -1,16 +1,16 @@
 <?php
 require_once('components.php');
-include('classes/Connection.php');
+
+include('classes/Service/ProductService.php');
 if(isset($_COOKIE['isLogged']) && !empty($_COOKIE['isLogged'])){
     $isLogged = $_COOKIE['isLogged'];
 }else{
     $isLogged = false;
 }
 
-//TODO change it to a product service
-$conn = ConnectionManager::getConnection("project_php_a3");
-$sql = "select * from product where gender = 'm'";
-$result_set = $conn->query($sql);
+
+$product_service = new ProductService();
+$products =  $product_service->getAllByGender('m');
 ?>
 
 <!doctype html>
@@ -29,7 +29,7 @@ $result_set = $conn->query($sql);
 </header>
 
 <main>
-    <?php main_content_card('Men', $result_set);?>
+    <?php main_content_card('Men', $products);?>
 </main>
 
 <footer>

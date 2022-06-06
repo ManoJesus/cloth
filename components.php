@@ -26,8 +26,8 @@ function header_nav($isLogged)
     }
 
     $result .= '<div class="container__cart">
-            <img src="site_images/icons/carrin.png" alt="">
-        </div>';
+                    <a href="cart.php"><img src="site_images/icons/carrin.png" alt=""></a>
+                </div>';
     echo $result;
 }
 
@@ -57,13 +57,13 @@ function footer()
         <p>Developed By ManoJesus.Inc</p>';
 }
 
-function main_content_card($page_title, $result_set)
+function main_content_card($page_title, $products)
 {
     $result = '<div class="page__title">
                 <p id="title-page">' . $page_title . '</p>
             </div>
             <div class="card_container">';
-    while ($row = mysqli_fetch_array($result_set)) {
+    foreach($products as $row) {
         $result .= '<div class="card">
                         <div class="card__img">
                             <a href="buy_page.php?name='.$row["name"].'"><img class="product__img" src="' . $row["image_path"] . '" alt="product_img"></a>
@@ -77,4 +77,22 @@ function main_content_card($page_title, $result_set)
     }
     $result .= '</div>';
     echo $result;
+}
+
+function cart_item(array $product){
+    echo '<div class="cart__product flex">
+                <img class="cart__product-image" src="'.$product['image_path'].'" alt="product_image">
+                <span  class="cart__product-name">'.$product['name'].'</span>
+                <span  class="cart__product-price">$'.$product['price'].'</span>
+                <div class="input__quantity">
+                    <button type="button" class="btn quantity__btn add" onclick="increment(\''.$product['name'].'\')"><i class="fas fa-regular fa-plus"></i></button>
+                    <input type="text" name="quantity" class="product__quantity" id="quantity_'.$product['name'].'" oninput="updateQuantity(this,\''.$product['name'].'\')" value="'.$product['quantity'].'" maxlength="2">
+                    <button type="button" class="btn quantity__btn sub" onclick="decrement(\''.$product['name'].'\')"><i class="fas fa-regular fa-minus"></i></button>
+                </div>
+                <span  class="cart__product-total">$'.number_format($product['total_price'],2).'</span>
+                <button class="btn btn_delete">Delete</button>
+            </div>';
+}
+function cart_no_item(){
+    echo '<div class="cart__product flex"> <p>No items added to cart</p> </div>';
 }

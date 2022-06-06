@@ -1,6 +1,6 @@
 <?php
     require_once('components.php');
-    include('classes/Connection.php');
+    include('classes/Service/ProductService.php');
 
     new ConnectionManager();
 
@@ -10,10 +10,8 @@
         $isLogged = false;
     }
 
-    //TODO change it to a product service
-    $conn = ConnectionManager::getConnection("project_php_a3");
-    $sql = "select * from product limit 15";
-    $result_set = $conn->query($sql);
+    $product_service = new ProductService();
+    $products = $product_service->getAllWithLimit(15);
 ?>
 
 <!doctype html>
@@ -32,7 +30,7 @@
     </header>
 
     <main>
-        <?php main_content_card('What\'s new ?', $result_set);?>
+        <?php main_content_card('What\'s new ?', $products);?>
     </main>
 
     <footer>

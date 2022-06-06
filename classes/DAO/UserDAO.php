@@ -1,6 +1,6 @@
 <?php
-include ("User.php");
-include ("Connection.php");
+include("classes/Model/User.php");
+include("classes/Persistence/Connection.php");
 class UserDAO
 {
     function getUserByEmail(string $email): ?User
