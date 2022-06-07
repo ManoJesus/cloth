@@ -11,18 +11,24 @@ function header_nav($isLogged)
             <a class="nav__link" href="kids.php">Kids</a>
         </div>';
     if (!$isLogged) {
-        $result .= '<div class="container__sign-in">
-                <a class="btn btn__link sign-in" href="signin.php">SIGN IN</a>
-            </div>';
+        $result .= '<div class="container__account">
+                        <a class="btn btn__link sign-in" href="signin.php">SIGN IN</a>
+                        <div class="container__cart">
+                             <a href="cart.php"><img src="site_images/icons/carrin.png" alt=""></a>
+                        </div>
+                    </div>';
     } else {
         $result .= '<div class="container__my-account">
-                <img src="site_images/icons/Avatar.png" alt="user-icon">
-                <span class="my-account">My Account</span>
-                <div class="dropdown-menu">
-                    <a href="" class="dropdown-item">Previous Orders</a>
-                    <a href="logout.php" class="dropdown-item">Log Out</a>
-                </div>
-            </div>';
+                        <img src="site_images/icons/Avatar.png" alt="user-icon">
+                        <span class="my-account">My Account</span>
+                        <div class="dropdown-menu">
+                            <a href="" class="dropdown-item">Previous Orders</a>
+                            <a href="logout.php" class="dropdown-item">Log Out</a>
+                        </div>
+                        <div class="container__cart">
+                            <a href="cart.php"><img src="site_images/icons/carrin.png" alt=""></a>
+                         </div>
+                    </div>';
     }
 
     $result .= '<div class="container__cart">
