@@ -82,15 +82,15 @@ function main_content_card($page_title, $products)
 function cart_item(array $product){
     echo '<div class="cart__product flex">
                 <img class="cart__product-image" src="'.$product['image_path'].'" alt="product_image">
-                <span  class="cart__product-name">'.$product['name'].'</span>
-                <span  class="cart__product-price">$'.$product['price'].'</span>
+                <span  class="cart__product-name" >'.$product['name'].'</span>
+                <span  class="cart__product-price" id="price__'.$product['name'].'">$'.$product['price'].'</span>
                 <div class="input__quantity">
                     <button type="button" class="btn quantity__btn add" onclick="increment(\''.$product['name'].'\')"><i class="fas fa-regular fa-plus"></i></button>
-                    <input type="text" name="quantity" class="product__quantity" id="quantity_'.$product['name'].'" oninput="updateQuantity(this,\''.$product['name'].'\')" value="'.$product['quantity'].'" maxlength="2">
+                    <input type="text" name="quantity" class="product__quantity" id="quantity_'.$product['name'].'" oninput="updateQuantityIn(this,\''.$product['name'].'\')" onchange="updateQuantityCh(event,\''.$product['name'].'\')" value="'.$product['quantity'].'" maxlength="2">
                     <button type="button" class="btn quantity__btn sub" onclick="decrement(\''.$product['name'].'\')"><i class="fas fa-regular fa-minus"></i></button>
                 </div>
-                <span  class="cart__product-total">$'.number_format($product['total_price'],2).'</span>
-                <button class="btn btn_delete">Delete</button>
+                <span  class="cart__product-total" id="total__'.$product['name'].'">$'.number_format($product['total_price'],2).'</span>
+                <button class="btn btn_delete" onclick="deleteItem(\''.$product['name'].'\')">Delete</button>
             </div>';
 }
 function cart_no_item(){

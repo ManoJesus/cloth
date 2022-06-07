@@ -63,7 +63,7 @@ if(!empty($_SESSION['cart'])){
 <body>
     <header><?php header_no_nav();?></header>
     <main>
-        <div class="container__buy flex">
+        <div class="container__buy cart flex">
         <div class="cart__content">
             <p>Cart</p>
             <?php
@@ -79,9 +79,11 @@ if(!empty($_SESSION['cart'])){
             ?>
         </div>
         <div class="buy-information flex-column">
-            <span id="subtotal">Subtotal: <span><?php echo '$'. number_format($subtotal,2)?></span></span>
-            <span id="shipment">Shipment: <span><?php echo '$'.SHIPMENT?></span></span>
-            <span id="total">Total: <span><?php echo '$'. number_format($total_price , 2)?></span></span>
+            <span id="subtotal">Subtotal <span><?php echo '$'. number_format($subtotal,2)?></span></span>
+            <span id="shipment">Shipment <span><?php echo '$'.SHIPMENT?></span></span>
+            <span id="total">Total <span><?php echo '$'. number_format($total_price , 2)?></span></span>
+            <button class="btn btn_submit submit__buy-now" id="place-order">PLACE ORDER</button>
+            <button class="btn btn_submit submit__buy-now" onclick="toHome()">KEEP BUYING</button>
         </div>
         </div>
     </main>

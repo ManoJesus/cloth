@@ -45,7 +45,7 @@
                     <span class="quantity">Quantity:</span>
                     <div class="input__quantity">
                         <button type="button" class="btn quantity__btn" id="add"><i class="fas fa-regular fa-plus"></i></button>
-                        <input type="text" name="quantity" id="quantity" value="1" maxlength="2">
+                        <input type="text" name="quantity" class="product__quantity" value="1" maxlength="2">
                         <button type="button" class="btn quantity__btn" id="sub"><i class="fas fa-regular fa-minus"></i></button>
                     </div>
                     <input type="hidden" name="product_name" value="<?php echo $product['name']?>">
