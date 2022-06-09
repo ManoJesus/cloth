@@ -14,14 +14,14 @@ class ConnectionManager
 
     function __construct()
     {
-        $sql_db = "CREATE DATABASE IF NOT EXISTS project_php_a3";
+        $sql_db = "CREATE DATABASE IF NOT EXISTS project_php_a3;";
         $sql_table_user = "CREATE TABLE IF NOT EXISTS `users` (
                           `first_name` varchar(15) NOT NULL,
                           `last_name` varchar(40) DEFAULT NULL,
                           `email` varchar(100) NOT NULL,
                           `password` varchar(32) NOT NULL,
                           PRIMARY KEY (`email`)
-                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;";
+                        ) DEFAULT CHARSET=utf8";
         $sql_table_product = "CREATE TABLE IF NOT EXISTS  `product` (
                           `id` int NOT NULL,
                           `name` varchar(100) NOT NULL,
@@ -37,7 +37,22 @@ class ConnectionManager
                           `image_path` varchar(200) NOT NULL,
                           PRIMARY KEY (`name`),
                           UNIQUE KEY `id` (`id`)
-                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;";
+                        ) DEFAULT CHARSET=utf8";
+        $sql_table_order = 'create table if not exists `order`
+(
+    product_name varchar(100) not null,
+    user_email   varchar(100) not null,
+    quantity     int          not null,
+    order_date   datetime     not null default now(), 
+    constraint order_pk
+        primary key (user_email, product_name, order_date),
+    constraint table_name_product_name_fk
+        foreign key (product_name) references product (name)
+            on update cascade on delete cascade,
+    constraint table_name_users_email_fk
+        foreign key (user_email) references users (email)
+) default charset = utf8;
+';
 
         $sql_insert_into_product = "INSERT INTO `product` VALUES (16,'Bermuda chino reta',99.99,3,'Suncoast','Sem Estampa','100% Algodão','m','Cinza','Brasil',NULL,'product_images/bermuda_chino_reta.webp')
                            ,(32,'Bermuda com recortes',69.99,35,'Baby Club Mini','Sem Estampa','100% Poliéster','k','Azul','China',8,'product_images/bermuda_com_recortes.webp')
@@ -78,6 +93,7 @@ class ConnectionManager
         $this->create_db($sql_db);
         $this->create_table($sql_table_user);
         $this->create_table($sql_table_product);
+        $this->create_table($sql_table_order);
 
         $conn = self::getConnection();
         $sql = "select * from product";

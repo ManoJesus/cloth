@@ -126,7 +126,24 @@ function deleteItem(product_name){
     window.location = "cart.php";
 }
 
+function makeOrder(isLogged){
+    let logged = Boolean(isLogged);
 
+    if(logged){
+        placeOrder();
+        window.location = "index.php";
+    }
+}
+
+function placeOrder(){
+    const request = new XMLHttpRequest();
+    const vars = 'func=placeOrder';
+    request.open('post', `cart_functions.php`, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send(vars);
+    console.log(request);
+
+}
 
 
 

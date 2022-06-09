@@ -19,7 +19,7 @@ class ProductService
     {
         return  $this->productDAO->findAllByGender($gender) ;
     }
-    function getProductByName($name): array
+    function getProductByName($name): Product
     {
         return  $this->productDAO->findByName($name) ;
     }

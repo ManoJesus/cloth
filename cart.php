@@ -1,6 +1,6 @@
 <?php
 require_once ('components.php');
-include('classes/Service/ProductService.php');
+include_once('classes/Service/ProductService.php');
 
 session_start();
 
@@ -36,11 +36,11 @@ if(isset($_POST['add_to_cart'])){
 if(!empty($_SESSION['cart'])){
     foreach ($_SESSION['cart'] as $key => $value) {
         $product_db = $product_service->getProductByName($value['product_id']);
-        $product_cart = array('name' => $product_db['name'],
-            'image_path' => $product_db['image_path'],
-            'price' =>$product_db['price'],
+        $product_cart = array('name' => $product_db->getName(),
+            'image_path' => $product_db->getImagePath(),
+            'price' =>$product_db->getPrice(),
             'quantity' =>$value['quantity'],
-            'total_price' => $product_db['price'] * $value['quantity']);
+            'total_price' => $product_db->getPrice() * $value['quantity']);
         $products[] = $product_cart;
     }
 }
@@ -82,7 +82,7 @@ if(!empty($_SESSION['cart'])){
             <span id="subtotal">Subtotal <span><?php echo '$'. number_format($subtotal,2)?></span></span>
             <span id="shipment">Shipment <span><?php echo '$'.SHIPMENT?></span></span>
             <span id="total">Total <span><?php echo '$'. number_format($total_price , 2)?></span></span>
-            <button class="btn btn_submit submit__buy-now" id="place-order">PLACE ORDER</button>
+            <button class="btn btn_submit submit__buy-now" onclick="makeOrder(<?php echo $isLogged; ?>)" id="place-order">PLACE ORDER</button>
             <button class="btn btn_submit submit__buy-now" onclick="toHome()">KEEP BUYING</button>
         </div>
         </div>

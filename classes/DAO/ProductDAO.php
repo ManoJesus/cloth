@@ -1,5 +1,6 @@
 <?php
-include ('classes/Persistence/Connection.php');
+include_once ('classes/Persistence/Connection.php');
+include_once ('classes/Model/Product.php');
 class ProductDAO
 {
     function findAll(): array
@@ -36,17 +37,31 @@ class ProductDAO
         $conn->close();
         return $products;
     }
-    function findByName(string $name): array
+    function findByName(string $name): Product
     {
         $conn = ConnectionManager::getConnection();
         $name_escaped = $conn->real_escape_string($name);
-        $sql = "SELECT * FROM product WHERE name = '$name'";
+        $sql = "SELECT * FROM product WHERE name = '$name_escaped'";
 
         $result_set = $conn->query($sql);
         $product = array();
         if(mysqli_num_rows($result_set) > 0){
-            $product =  mysqli_fetch_array($result_set, MYSQLI_ASSOC);
+            $product_db =  mysqli_fetch_array($result_set, MYSQLI_ASSOC);
         }
+        $product = new Product(
+            $product_db['id'],
+            $product_db['name'],
+            $product_db['price'],
+            $product_db['quantity_available'],
+            $product_db['brand'],
+            $product_db['type_label'],
+            $product_db['composition'],
+            $product_db['gender'],
+            $product_db['color'],
+            $product_db['made'],
+            $product_db['age'],
+            $product_db['image_path']
+        );
         $conn->close();
         return $product;
     }

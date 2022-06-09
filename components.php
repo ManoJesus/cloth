@@ -18,12 +18,14 @@ function header_nav($isLogged)
                         </div>
                     </div>';
     } else {
-        $result .= '<div class="container__my-account">
-                        <img src="site_images/icons/Avatar.png" alt="user-icon">
-                        <span class="my-account">My Account</span>
-                        <div class="dropdown-menu">
-                            <a href="" class="dropdown-item">Previous Orders</a>
-                            <a href="logout.php" class="dropdown-item">Log Out</a>
+        $result .= '<div class="container__account">
+                        <div class="container__my-account">
+                            <img src="site_images/icons/Avatar.png" alt="user-icon">
+                            <span class="my-account">My Account</span>
+                            <div class="dropdown-menu">
+                                <a href="my-orders.php" class="dropdown-item">Previous Orders</a>
+                                <a href="logout.php" class="dropdown-item">Log Out</a>
+                            </div>                       
                         </div>
                         <div class="container__cart">
                             <a href="cart.php"><img src="site_images/icons/carrin.png" alt=""></a>
@@ -31,9 +33,6 @@ function header_nav($isLogged)
                     </div>';
     }
 
-    $result .= '<div class="container__cart">
-                    <a href="cart.php"><img src="site_images/icons/carrin.png" alt=""></a>
-                </div>';
     echo $result;
 }
 
@@ -101,4 +100,13 @@ function cart_item(array $product){
 }
 function cart_no_item(){
     echo '<div class="cart__product flex"> <p>No items added to cart</p> </div>';
+}
+function order_item(array $orders){
+    echo '<div class="cart__product flex">
+                <img class="cart__product-image" src="'.$orders['image_path'].'" alt="product_image">
+                <span  class="cart__product-name" >'.$orders['product_name'].'</span>
+                <span  class="cart__product-price" >$'.$orders['product_price'].'</span>
+                <span class="">'.$orders['quantity'].'</span>
+                <span  class="cart__product-total" >$'.number_format($orders['product_price']*$orders['quantity'],2).'</span>
+            </div>';
 }
